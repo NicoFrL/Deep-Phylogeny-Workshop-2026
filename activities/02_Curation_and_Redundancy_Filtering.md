@@ -85,13 +85,15 @@ myprotein_curated.tsv
 
 Keep the original UniProt FASTA unchanged.
 
-The redundancy-filtering script will use the accessions retained in your curated TSV, retrieve the corresponding sequences from the original FASTA, and perform CD-HIT independently within each organism. The original TSV and FASTA are never modified.
+The redundancy-filtering script will use the accessions retained in your curated TSV, retrieve the corresponding sequences from the original FASTA, and perform CD-HIT independently within each organism.
+
+**The original TSV and FASTA are never modified.**
 
 ---
 
 ## 4. Reduce redundancy within each organism
 
-We will use CD-HIT with a 90% sequence-identity threshold.
+We will use CD-HIT as a conservative redundancy filter.
 
 Importantly, clustering is performed **independently for each Organism ID**.
 
@@ -103,15 +105,35 @@ Run:
 cdhit_by_organism     myprotein_curated.tsv     myprotein.fasta
 ```
 
-Default parameters are:
+By default, the workshop script uses:
 
 ```text
-sequence identity = 90%
+sequence identity = 95%
 CD-HIT global identity
 2 CPU threads
 ```
 
 CD-HIT defines global identity here as the number of identical residues divided by the full length of the shorter sequence.
+
+### Changing the identity threshold
+
+The 95% threshold is a **heuristic default**, not a universal biological rule.
+
+You can change it with the `-c` (or `--identity`) option.
+
+For example, to use a more conservative 98% threshold:
+
+```bash
+cdhit_by_organism     myprotein_curated.tsv     myprotein.fasta     -c 0.98
+```
+
+To use 90%:
+
+```bash
+cdhit_by_organism     myprotein_curated.tsv     myprotein.fasta     -c 0.90
+```
+
+Higher thresholds retain more closely related sequences. Lower thresholds remove more redundancy but increase the risk of clustering genuine recent paralogues.
 
 This step is a pragmatic redundancy filter. It is **not** an orthology-inference method and does not automatically distinguish recent paralogues.
 
@@ -119,14 +141,16 @@ This step is a pragmatic redundancy filter. It is **not** an orthology-inference
 
 ## 5. Examine the results
 
-Four files are produced:
+With the default 95% threshold, four files are produced:
 
 ```text
-*_cdhit90.fasta
-*_cdhit90.tsv
-*_cdhit90_summary.tsv
-*_cdhit90_clusters.tsv
+*_cdhit95.fasta
+*_cdhit95.tsv
+*_cdhit95_summary.tsv
+*_cdhit95_clusters.tsv
 ```
+
+If you use another threshold, the filenames change accordingly. For example, `-c 0.98` produces files containing `_cdhit98`.
 
 ### FASTA
 
@@ -143,8 +167,8 @@ The number of sequences before and after clustering for each organism.
 Example:
 
 ```text
-Arabidopsis thaliana     25 -> 14
-Oryza sativa             10 -> 8
+Arabidopsis thaliana     25 -> 16
+Oryza sativa             10 -> 9
 ```
 
 ### Clusters
@@ -169,6 +193,7 @@ Inspect this file if an important sequence appears to have disappeared during re
 - Could a cluster contain genuine recent paralogues?
 - Are sequence lengths now reasonably coherent?
 - Does the remaining dataset still represent the taxonomic diversity relevant to your biological question?
+- Would a stricter identity threshold be more appropriate for this particular protein family?
 
 Do not aim for a fixed number of sequences.
 
@@ -178,6 +203,6 @@ The goal is a biologically interpretable dataset, not simply the smallest one.
 
 ## Key point
 
-A 90% CD-HIT threshold is used here as a practical way to reduce strong within-organism redundancy before alignment and phylogenetic analysis.
+For this workshop, **95% sequence identity within each organism** is used as a conservative default for reducing strong redundancy before alignment and phylogenetic analysis.
 
-It should not replace biological inspection of the sequences or genome annotations.
+The threshold is adjustable and should be treated as a practical filtering parameter, not as a definition of orthology, paralogy, or biological equivalence.
