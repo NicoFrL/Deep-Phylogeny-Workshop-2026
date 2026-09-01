@@ -102,7 +102,9 @@ Therefore, sequences from different organisms are never clustered together, even
 Run:
 
 ```bash
-cdhit_by_organism     myprotein_curated.tsv     myprotein.fasta
+cdhit_by_organism \
+    myprotein_curated.tsv \
+    myprotein.fasta
 ```
 
 By default, the workshop script uses:
@@ -124,13 +126,19 @@ You can change it with the `-c` (or `--identity`) option.
 For example, to use a more conservative 98% threshold:
 
 ```bash
-cdhit_by_organism     myprotein_curated.tsv     myprotein.fasta     -c 0.98
+cdhit_by_organism \
+    myprotein_curated.tsv \
+    myprotein.fasta \
+    -c 0.98
 ```
 
 To use 90%:
 
 ```bash
-cdhit_by_organism     myprotein_curated.tsv     myprotein.fasta     -c 0.90
+cdhit_by_organism \
+    myprotein_curated.tsv \
+    myprotein.fasta \
+    -c 0.90
 ```
 
 Higher thresholds retain more closely related sequences. Lower thresholds remove more redundancy but increase the risk of clustering genuine recent paralogues.
@@ -141,11 +149,12 @@ This step is a pragmatic redundancy filter. It is **not** an orthology-inference
 
 ## 5. Examine the results
 
-With the default 95% threshold, four files are produced:
+With the default 95% threshold, five files are produced:
 
 ```text
 *_cdhit95.fasta
 *_cdhit95.tsv
+*_cdhit95_accessions.txt
 *_cdhit95_summary.tsv
 *_cdhit95_clusters.tsv
 ```
@@ -159,6 +168,18 @@ The non-redundant sequences retained for downstream analyses.
 ### TSV
 
 The corresponding UniProt metadata for the retained representatives.
+
+### Accession list
+
+A simple text file containing one retained UniProt accession per line.
+
+```text
+P12345
+Q67890
+A0A123456
+```
+
+This file is ready to use as the input file for **ProtDomRetrieverSuite** in Activity 03.
 
 ### Summary
 
