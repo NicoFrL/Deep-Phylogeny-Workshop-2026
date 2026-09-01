@@ -85,7 +85,7 @@ myprotein_curated.tsv
 
 Keep the original UniProt FASTA unchanged.
 
-The redundancy-filtering script will use the accessions retained in the TSV to select the corresponding sequences from the FASTA.
+The redundancy-filtering script will use the accessions retained in your curated TSV, retrieve the corresponding sequences from the original FASTA, and perform CD-HIT independently within each organism. The original TSV and FASTA are never modified.
 
 ---
 
