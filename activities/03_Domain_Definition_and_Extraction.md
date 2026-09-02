@@ -58,24 +58,44 @@ ProtDomRetrieverSuite is a graphical application, so launch it from the X2Go ses
 protdomretrieversuite
 ```
 
-In the graphical interface, provide:
+In the graphical interface, use the file-selection buttons rather than typing full paths manually.
 
 ### Input file
 
-Select the accession list produced by Activity 02:
+Click the input-file selection button and choose the accession list produced in Activity 02:
 
 ```text
-/projects/LaboratoireRDP/Deep_Phylogeny_Workshop_2026/participants/$USER/01_sequences/myprotein_curated_cdhit95_accessions.txt
+myprotein_curated_cdhit95_accessions.txt
 ```
 
-If you used a different CD-HIT threshold, adapt the filename accordingly. For example, a 98% threshold will produce a filename containing `_cdhit98_`.
+This file is located in your:
+
+```text
+01_sequences
+```
+
+directory.
 
 ### Output directory
 
-Use your workshop domain directory:
+Click the output-directory selection button and choose your:
 
 ```text
-/projects/LaboratoireRDP/Deep_Phylogeny_Workshop_2026/participants/$USER/02_domains
+02_domains
+```
+
+directory.
+
+For example, navigate to:
+
+```text
+/projects/LaboratoireRDP/Deep_Phylogeny_Workshop_2026/participants/
+```
+
+then open your own user directory and select:
+
+```text
+02_domains
 ```
 
 ### Domain/signature entry
@@ -89,6 +109,8 @@ IPR000971
 ```
 
 The appropriate entry will depend on your own protein family.
+
+> Do not type paths containing `$USER` directly into the graphical interface. `$USER` is expanded by the shell in terminal commands, but not by ProtDomRetrieverSuite.
 
 ---
 
