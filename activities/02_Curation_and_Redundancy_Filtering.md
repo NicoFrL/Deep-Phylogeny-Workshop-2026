@@ -77,10 +77,24 @@ For the workshop, we will perform a faster first-pass curation.
 
 Delete only the rows that you have decided should not be retained.
 
-Save the resulting table as a tab-separated file, for example:
+In LibreOffice Calc, save the curated table as a **Text CSV** file.
+
+Use a filename such as:
 
 ```text
 myprotein_curated.tsv
+```
+
+LibreOffice may automatically append `.csv`, resulting in:
+
+```text
+myprotein_curated.tsv.csv
+```
+
+If this happens, rename it in the terminal:
+
+```bash
+mv myprotein_curated.tsv.csv myprotein_curated.tsv
 ```
 
 Keep the original UniProt FASTA unchanged.
