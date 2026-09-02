@@ -183,6 +183,16 @@ The non-redundant sequences retained for downstream analyses.
 
 The corresponding UniProt metadata for the retained representatives.
 
+This is the **CD-HIT-filtered version of your curated table** (`myprotein_curated.tsv`): sequences removed as redundant are no longer present.
+
+Open it with LibreOffice Calc:
+
+```bash
+libreoffice --calc *_cdhit95.tsv &
+```
+
+This is the main metadata table that you will keep for the non-redundant dataset.
+
 ### Accession list
 
 A simple text file containing one retained UniProt accession per line.
@@ -216,7 +226,15 @@ A detailed record of every CD-HIT cluster, including:
 - cluster members;
 - identity to the representative.
 
-Inspect this file if an important sequence appears to have disappeared during redundancy filtering.
+Open it with LibreOffice Calc:
+
+```bash
+libreoffice --calc *_cdhit95_clusters.tsv &
+```
+
+Use this table to see which sequences were grouped together and which sequence was retained as the representative.
+
+Inspect this file in particular if an important sequence appears to have disappeared during redundancy filtering.
 
 ---
 
