@@ -99,9 +99,22 @@ mv myprotein_curated.tsv.csv myprotein_curated.tsv
 
 Keep the original UniProt FASTA unchanged.
 
-The redundancy-filtering script will use the accessions retained in your curated TSV, retrieve the corresponding sequences from the original FASTA, and perform CD-HIT independently within each organism.
+Create a working copy of the original FASTA with a simple filename:
 
-**The original TSV and FASTA are never modified.**
+```bash
+cp uniprot_*.fasta myprotein.fasta
+```
+
+You should now have the two files required for redundancy filtering:
+
+```text
+myprotein_curated.tsv
+myprotein.fasta
+```
+
+The redundancy-filtering script will use the accessions retained in `myprotein_curated.tsv`, recover the corresponding sequences from `myprotein.fasta`, and perform CD-HIT independently within each organism.
+
+**The original UniProt TSV and FASTA files are never modified.**
 
 ---
 
