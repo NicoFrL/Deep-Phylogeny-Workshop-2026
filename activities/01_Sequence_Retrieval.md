@@ -101,7 +101,7 @@ Use the UniProt results table to inspect:
 
 For the complete workshop taxon list, use the provided command-line tool.
 
-First activate the workshop environment:
+First activate the workshop environment (if you have not already done so, or if you are working in a new terminal window):
 
 ```bash
 source /projects/LaboratoireRDP/Deep_Phylogeny_Workshop_2026/activate_workshop.sh
