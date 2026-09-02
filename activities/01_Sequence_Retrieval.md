@@ -138,7 +138,7 @@ By default, the retrieval tool creates a `.tsv` table in the current directory.
 List the files:
 
 ```bash
-ls -lh
+ls
 ```
 
 Open the table in LibreOffice Calc:
