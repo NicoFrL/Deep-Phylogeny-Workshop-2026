@@ -131,9 +131,9 @@ The script automatically uses the workshop taxon list and queries the exact orga
 
 ---
 
-## 4. Inspect the output table
+## 4. Inspect the output files
 
-By default, the retrieval tool creates a `.tsv` table in the current directory.
+The retrieval tool creates a `.tsv` table and a `.fasta` file in the current directory.
 
 List the files:
 
