@@ -62,11 +62,13 @@ In the graphical interface, provide:
 
 ### Input file
 
-Select the accession list produced by Activity 02, for example:
+Select the accession list produced by Activity 02:
 
 ```text
-myprotein_curated_cdhit95_accessions.txt
+/projects/LaboratoireRDP/Deep_Phylogeny_Workshop_2026/participants/$USER/01_sequences/myprotein_curated_cdhit95_accessions.txt
 ```
+
+If you used a different CD-HIT threshold, adapt the filename accordingly. For example, a 98% threshold will produce a filename containing `_cdhit98_`.
 
 ### Output directory
 
@@ -111,9 +113,27 @@ interpro_results.json
 
 ## 5. Inspect the output
 
+After the analysis is complete, remain in your domain-analysis directory:
+
+```bash
+cd /projects/LaboratoireRDP/Deep_Phylogeny_Workshop_2026/participants/$USER/02_domains
+```
+
+List the generated files:
+
+```bash
+ls
+```
+
 ### `domain_analysis.tsv`
 
 Contains the accession, selected InterPro/signature entry, and the detected domain coordinates.
+
+Open it with LibreOffice Calc:
+
+```bash
+libreoffice --calc domain_analysis.tsv &
+```
 
 Example:
 
@@ -132,6 +152,12 @@ Example:
 P69905[2-142]
 ```
 
+You can inspect it directly in the terminal:
+
+```bash
+cat domain_ranges.txt
+```
+
 ### `domain_sequences.fasta`
 
 Contains the extracted domain sequences that will be used for downstream alignment.
@@ -140,6 +166,12 @@ Example header:
 
 ```text
 >P69905[2-142] IPR000971
+```
+
+You can inspect the first entries with:
+
+```bash
+head domain_sequences.fasta
 ```
 
 ### `interpro_results.json`
